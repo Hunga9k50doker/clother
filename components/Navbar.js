@@ -3,7 +3,6 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import { useSession } from "@supabase/auth-helpers-react";
-import { signIn, signOut } from "@/context/Auth";
 import { supabase } from "@/lib/initSupabase";
 import Link from "next/link";
 import { Auth, Typography, Button } from "@supabase/ui";
@@ -74,7 +73,7 @@ export default function Navbar() {
               {user ? (
                 <div
                   onClick={() => {
-                    signOut();
+                    // signOut();
                   }}
                   className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 text-white cursor-pointer"
                 >
