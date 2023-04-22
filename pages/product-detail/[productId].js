@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getProductById, createOrder } from "@/actions/products";
+import { getProductById } from "@/actions/products";
+import { createOrder } from "@/actions/orders";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { imageDefault } from "@/assets/imgs";

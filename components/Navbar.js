@@ -18,8 +18,8 @@ export default function Navbar() {
 
   const navigation = [
     { name: "Home", href: "/", current: true, isShow: true },
-    { name: "Products", href: "/admin/products", current: false, isShow: Boolean(user) },
-    { name: "Orders", href: "/admin/orders", current: false, isShow: Boolean(user) },
+    { name: "Products", href: "/admin/products", current: false, isShow: true },
+    { name: "Orders", href: "/admin/orders", current: false, isShow: true },
   ];
 
   const addProduct = async () => {

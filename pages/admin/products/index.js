@@ -1,7 +1,11 @@
 import React from "react";
-
+import ListProduct from "@/components/Admin/ListProduct";
 const Products = () => {
-  return <div>Products</div>;
+  return (
+    <div>
+      <ListProduct />
+    </div>
+  );
 };
 
 export default Products;

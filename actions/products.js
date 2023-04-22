@@ -24,10 +24,10 @@ export const getProductById = (id) => async (dispatch) => {
   }
 };
 
-export const createOrder = (formData) => async (dispatch) => {
+export const createProduct = (formData) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
-    const { data } = await api.createOrder(formData);
+    const { data } = await api.createProduct(formData);
     dispatch({ type: END_LOADING });
     dispatch({ type: CREATE_PRODUCT, payload: { data } });
   } catch (error) {
