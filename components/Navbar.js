@@ -15,24 +15,12 @@ export default function Navbar() {
   const session = useSession();
   const router = useRouter();
   const { user } = Auth.useUser();
-
+  console.log(router);
   const navigation = [
-    { name: "Home", href: "/", current: true, isShow: true },
+    { name: "Home", href: "/", current: false, isShow: true },
     { name: "Products", href: "/admin/products", current: false, isShow: true },
     { name: "Orders", href: "/admin/orders", current: false, isShow: true },
   ];
-
-  const addProduct = async () => {
-    const { data, error } = await supabase.from("products").insert([
-      {
-        name: "product",
-        description: "ads",
-        price: 200,
-        discount_price: 100,
-        images: ["https://dotilo.com/image/catalog/coupon/aotron/xam.jpg"],
-      },
-    ]);
-  };
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -69,7 +57,6 @@ export default function Navbar() {
                   </div>
                 </div>
               </div>
-              <button onClick={() => addProduct()}>Add</button>
               {user ? (
                 <div
                   onClick={() => {

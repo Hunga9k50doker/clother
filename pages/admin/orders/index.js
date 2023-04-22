@@ -1,7 +1,12 @@
 import React from "react";
+import ListOrder from "@/components/Admin/ListOrder";
 
-const Orders = () => {
-  return <div>Orders</div>;
+const OrdersPage = () => {
+  return (
+    <div>
+      <ListOrder />
+    </div>
+  );
 };
 
-export default Orders;
+export default OrdersPage;
