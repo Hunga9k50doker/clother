@@ -7,14 +7,5 @@ export const createProduct = (formData) => supabase.from("products").insert(form
 export const fetchOrders = () => supabase.from("orders").select();
 export const createOrder = (formData) => supabase.from("orders").insert(formData);
 
-export const signin = (formData) => supabase.auth.signInWithPassword(formData);
-export const signup = (formData) =>
-  supabase.auth
-    .signUp(formData)
-    .then((res) => {
-      supabase.from("users").insert({ email: formData.email, role: 0 });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+export const checkSession = () => supabase.auth.getSession();
 export const logout = () => supabase.auth.signOut();

@@ -1,26 +1,29 @@
-import { Fragment, useEffect } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Disclosure } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import { useSession } from "@supabase/auth-helpers-react";
-import { supabase } from "@/lib/initSupabase";
 import Link from "next/link";
-import { Auth, Typography, Button } from "@supabase/ui";
-
+import { signOut } from "@/actions/auth";
+import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Navbar() {
-  const session = useSession();
+  const [session, setSession] = useState(null);
+  const { authData } = useSelector((state) => state.authReducer);
+
   const router = useRouter();
-  const { user } = Auth.useUser();
-  console.log(router);
   const navigation = [
     { name: "Home", href: "/", current: false, isShow: true },
     { name: "Products", href: "/admin/products", current: false, isShow: true },
     { name: "Orders", href: "/admin/orders", current: false, isShow: true },
   ];
+
+  useEffect(() => {
+    if (authData?.session) setSession(authData.session);
+  }, [authData]);
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -57,10 +60,11 @@ export default function Navbar() {
                   </div>
                 </div>
               </div>
-              {user ? (
+
+              {session ? (
                 <div
                   onClick={() => {
-                    // signOut();
+                    signOut();
                   }}
                   className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 text-white cursor-pointer"
                 >
