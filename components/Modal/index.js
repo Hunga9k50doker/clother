@@ -50,11 +50,11 @@ export default function ModalInfoCustomer({ isOpen, setIsOpen, onSubmit, onChang
                           type="tel"
                           autoComplete="true"
                           className="w-full rounded-md shadow-sm ring-1 ring-inset ring-gray-300 block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                          placeholder="phone number"
+                          placeholder="Phone number ex:0123311642"
                           required
                           name="phone_number"
                           onChange={onChange}
-                          pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                          pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
                         />
                         <input
                           type="email"

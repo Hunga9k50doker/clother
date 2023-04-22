@@ -36,6 +36,7 @@ const ProductDetail = () => {
     };
     dispatch(createOrder(dataSubmit));
     setIsOpen(false);
+    alert("Successfully!");
   };
 
   useEffect(() => {
@@ -52,7 +53,7 @@ const ProductDetail = () => {
 
   return (
     data && (
-      <div className="p-4">
+      <div className="p-4 bg-[white] h-screen w-full">
         <div className="m-auto">
           <Image
             onError={(e) => (e.currentTarget.src = imageDefault)}
