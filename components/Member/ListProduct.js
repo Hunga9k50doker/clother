@@ -19,10 +19,10 @@ const ListProduct = () => {
   };
 
   useEffect(() => {
-    dispatch(getProducts);
+    if (!products.length) dispatch(getProducts);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  console.log(products);
   useEffect(() => {
     setData(products);
   }, [products]);
