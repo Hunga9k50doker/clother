@@ -56,6 +56,7 @@ const ProductDetail = () => {
     if (!product && router.isReady) {
       dispatch(getProductById(router.query.productId));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
   useEffect(() => {

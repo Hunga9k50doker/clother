@@ -12,6 +12,7 @@ const ListOrder = () => {
 
   useEffect(() => {
     if (router.isReady) if (!orders.length) dispatch(getOrders);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
