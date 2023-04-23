@@ -3,9 +3,9 @@ import ImageUploading from "react-images-uploading";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { createProduct } from "@/actions/products";
+import { createProduct, getProducts } from "@/actions/products";
 
-export default function CreateProduct() {
+const CreateProduct = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [imagesPreview, setImagesPreview] = useState([]);
@@ -22,12 +22,18 @@ export default function CreateProduct() {
   };
 
   const validDateDate = (images = []) => {
-    if (formData.price > formData.discount_price) {
-      return alert("Price is less than or equal discount price");
+    if (formData.price < formData.discount_price && formData.discount_price !== 0) {
+      alert("Discount price is less than price");
+      return false;
     }
     if (images.length !== 5) {
-      return alert("Image upload is equal 5");
+      alert("Image upload is equal 5");
+      return false;
     }
+    if (formData.discount_price === 0) {
+      setformData({ ...formData, discount_price: formData.price });
+    }
+    return true;
   };
 
   const onSubmit = (e) => {
@@ -38,8 +44,9 @@ export default function CreateProduct() {
       ...formData,
       images: newImageList,
     };
-    validDateDate(newImageList);
+    if (!validDateDate(newImageList)) return;
     dispatch(createProduct(dataSubmit));
+    dispatch(getProducts);
     router.push("/admin/products");
   };
 
@@ -70,7 +77,7 @@ export default function CreateProduct() {
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="200"
               required
-              onChange={(e) => setformData({ ...formData, price: e.target.value })}
+              onChange={(e) => setformData({ ...formData, price: +e.target.value })}
             />
           </div>
           <div>
@@ -83,7 +90,7 @@ export default function CreateProduct() {
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Default value is price"
               required
-              onChange={(e) => setformData({ ...formData, discount_price: e.target.value })}
+              onChange={(e) => setformData({ ...formData, discount_price: +e.target.value })}
             />
           </div>
         </div>
@@ -153,4 +160,6 @@ export default function CreateProduct() {
       </form>
     </div>
   );
-}
+};
+
+export default CreateProduct;
