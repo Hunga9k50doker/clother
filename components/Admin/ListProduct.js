@@ -29,7 +29,7 @@ const ListProduct = () => {
           <table className="min-w-[900px] w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
-                <th>
+                <th className="w-3/5 md:w-2/5">
                   <button
                     onClick={() => router.push("/admin/products/add")}
                     className="m-4 flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
@@ -37,13 +37,13 @@ const ListProduct = () => {
                     Add New Product
                   </button>
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="w-1/5 px-6 py-3">
                   Product name
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="w-1/5 px-6 py-3">
                   Price
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="w-1/5 px-6 py-3">
                   Discount
                 </th>
               </tr>
@@ -53,9 +53,9 @@ const ListProduct = () => {
                 data.map((item, key) => (
                   <tr key={key} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <td className="">
-                      <div className="flex">
+                      <div className="flex gap-2">
                         {item.images.length > 0 &&
-                          item.images.map((image, index) => <Image key={index} src={image} alt={""} width={50} height={50} />)}
+                          item.images.map((image, index) => <Image key={index} src={image} alt={""} width={80} height={80} />)}
                       </div>
                     </td>
                     <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
