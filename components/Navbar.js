@@ -13,16 +13,15 @@ function classNames(...classes) {
 export default function Navbar() {
   const [accessToken, setAccessToken] = useState(null);
   const router = useRouter();
-
   useEffect(() => {
     const { access_token } = getSessionFromCookies();
     if (access_token) setAccessToken(access_token);
   }, [router]);
 
   const navigation = [
-    { name: "Home", href: "/", current: false, isShow: true },
-    { name: "Products", href: "/admin/products", current: false, isShow: Boolean(accessToken) },
-    { name: "Orders", href: "/admin/orders", current: false, isShow: Boolean(accessToken) },
+    { name: "Home", href: "/", current: Boolean(router.asPath === "/"), isShow: true },
+    { name: "Products", href: "/admin/products", current: Boolean(router.asPath === "/admin/products"), isShow: Boolean(accessToken) },
+    { name: "Orders", href: "/admin/orders", current: Boolean(router.asPath === "/admin/orders"), isShow: Boolean(accessToken) },
   ];
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -44,6 +43,7 @@ export default function Navbar() {
                       (item) =>
                         item.isShow && (
                           <Link
+                            style={{ pointerEvents: item.current ? "none" : "" }}
                             key={item.name}
                             href={item.href}
                             className={classNames(
