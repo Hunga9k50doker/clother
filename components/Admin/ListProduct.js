@@ -29,7 +29,7 @@ const ListProduct = () => {
           <table className="min-w-[900px] w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
-                <th className="w-3/5 md:w-2/5">
+                <th className="w-3/5 lg:w-2/5">
                   <button
                     onClick={() => router.push("/admin/products/add")}
                     className="m-4 flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
