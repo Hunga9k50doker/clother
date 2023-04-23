@@ -6,12 +6,3 @@ export const signOut = async () => {
   removeSessionToCookies();
   window.location.reload("/");
 };
-
-export const checkSession = async () => {
-  try {
-    const { data } = await api.checkSession();
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-};
