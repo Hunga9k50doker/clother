@@ -1,4 +1,3 @@
-import { AUTH, START_LOADING, END_LOADING } from "@/constants/actionTypes";
 import * as api from "../apis";
 import { removeSessionToCookies } from "@/utils";
 
