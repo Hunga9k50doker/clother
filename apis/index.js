@@ -7,5 +7,4 @@ export const createProduct = (formData) => supabase.from("products").insert(form
 export const fetchOrders = () => supabase.from("orders").select();
 export const createOrder = (formData) => supabase.from("orders").insert(formData);
 
-export const checkSession = () => supabase.auth.getSession();
 export const logout = () => supabase.auth.signOut();
