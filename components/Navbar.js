@@ -43,7 +43,7 @@ export default function Navbar() {
                       (item) =>
                         item.isShow && (
                           <Link
-                            style={{ pointerEvents: item.current ? "none" : "" }}
+                            style={{ pointerEvents: item.current ? "none" : "auto" }}
                             key={item.name}
                             href={item.href}
                             className={classNames(
@@ -88,7 +88,7 @@ export default function Navbar() {
                     <Link
                       key={item.name}
                       href={item.href}
-                      style={{ pointerEvents: item.current ? "none" : "" }}
+                      style={{ pointerEvents: item.current ? "none" : "auto" }}
                       className={classNames(
                         item.current ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white",
                         "block rounded-md px-3 py-2 text-base font-medium"
