@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { imageDefault } from "@/assets/imgs";
 import { useSelector, useDispatch } from "react-redux";
 import { getOrders } from "@/actions/orders";
 import { useRouter } from "next/router";
-import Image from "next/image";
-import { calculatePercent } from "@/utils";
 
 const ListOrder = () => {
   const { orders } = useSelector((state) => state.orders);
@@ -13,7 +10,7 @@ const ListOrder = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    if (!orders.length) dispatch(getOrders);
+    if (router.isReady) if (!orders.length) dispatch(getOrders);
   }, []);
 
   useEffect(() => {

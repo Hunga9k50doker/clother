@@ -1,18 +1,18 @@
 import { AUTH, START_LOADING, END_LOADING } from "@/constants/actionTypes";
 import * as api from "../apis";
+import { removeSessionToCookies } from "@/utils";
 
 export const signOut = async () => {
   await api.logout();
+  removeSessionToCookies();
+  window.location.reload("/");
 };
 
-export const checkSession = async (dispatch) => {
+export const checkSession = async () => {
   try {
-    dispatch({ type: START_LOADING });
     const { data } = await api.checkSession();
-    dispatch({ type: END_LOADING });
-    dispatch({ type: AUTH, data });
+    return data;
   } catch (error) {
-    dispatch({ type: END_LOADING });
     console.log(error);
   }
 };

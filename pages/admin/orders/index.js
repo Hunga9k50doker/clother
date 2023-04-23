@@ -1,6 +1,5 @@
-import React from "react";
 import ListOrder from "@/components/Admin/ListOrder";
-import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import { parseCookies } from "nookies";
 
 const OrdersPage = () => {
   return (
@@ -10,28 +9,20 @@ const OrdersPage = () => {
   );
 };
 
-export const getServerSideProps = async (ctx) => {
-  // Create authenticated Supabase Client
-  const supabase = createServerSupabaseClient(ctx);
-  // Check if we have a session
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
-  if (!session)
+export async function getServerSideProps(context) {
+  const cookies = parseCookies(context);
+  if (!cookies?.supabaseSession)
     return {
       redirect: {
         destination: "/",
         permanent: false,
       },
     };
-
   return {
     props: {
-      initialSession: session,
-      user: session.user,
+      cookies,
     },
   };
-};
+}
 
 export default OrdersPage;

@@ -1,6 +1,6 @@
 import React from "react";
 import ListProduct from "@/components/Admin/ListProduct";
-import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import { parseCookies } from "nookies";
 
 const Products = () => {
   return (
@@ -9,29 +9,19 @@ const Products = () => {
     </div>
   );
 };
-
-export const getServerSideProps = async (ctx) => {
-  // Create authenticated Supabase Client
-  const supabase = createServerSupabaseClient(ctx);
-  // Check if we have a session
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
-  if (!session)
+export async function getServerSideProps(context) {
+  const cookies = parseCookies(context);
+  if (!cookies?.supabaseSession)
     return {
       redirect: {
         destination: "/",
         permanent: false,
       },
     };
-
   return {
     props: {
-      initialSession: session,
-      user: session.user,
+      cookies,
     },
   };
-};
-
+}
 export default Products;

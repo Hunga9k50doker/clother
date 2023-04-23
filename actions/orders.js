@@ -5,8 +5,8 @@ export const createOrder = (formData) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
     const { data } = await api.createOrder(formData);
-    dispatch({ type: END_LOADING });
     dispatch({ type: CREATE_ORDER, payload: { data } });
+    dispatch({ type: END_LOADING });
   } catch (error) {
     dispatch({ type: END_LOADING });
     console.log(error);
@@ -17,8 +17,8 @@ export const getOrders = async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
     const { data } = await api.fetchOrders();
-    dispatch({ type: END_LOADING });
     dispatch({ type: GET_ALL_ORDERS, payload: { data } });
+    dispatch({ type: END_LOADING });
   } catch (error) {
     dispatch({ type: END_LOADING });
     console.log(error);

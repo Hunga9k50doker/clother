@@ -1,36 +1,26 @@
 import React from "react";
 import { useRouter } from "next/router";
 import CreateProduct from "@/components/Admin/CreateProduct";
-import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import { parseCookies } from "nookies";
 
-const ActionProductPage = () => {
+const ActionProductPage = (props) => {
   const router = useRouter();
   const { action } = router.query;
   return <div className="p-4">{action === "add" ? <CreateProduct /> : ""}</div>;
 };
-
-export const getServerSideProps = async (ctx) => {
-  // Create authenticated Supabase Client
-  const supabase = createServerSupabaseClient(ctx);
-  // Check if we have a session
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
-  if (!session)
+export async function getServerSideProps(context) {
+  const cookies = parseCookies(context);
+  if (!cookies?.supabaseSession)
     return {
       redirect: {
         destination: "/",
         permanent: false,
       },
     };
-
   return {
     props: {
-      initialSession: session,
-      user: session.user,
+      cookies,
     },
   };
-};
-
+}
 export default ActionProductPage;

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { imageDefault } from "@/assets/imgs";
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts } from "@/actions/products";
 import { useRouter } from "next/router";
@@ -43,9 +42,6 @@ const ListProduct = () => {
               <th scope="col" className="px-6 py-3">
                 Discount
               </th>
-              {/* <th scope="col" className="px-6 py-3">
-                Price
-              </th> */}
             </tr>
           </thead>
           <tbody>
