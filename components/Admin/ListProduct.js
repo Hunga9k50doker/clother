@@ -14,6 +14,7 @@ const ListProduct = () => {
 
   useEffect(() => {
     if (!products.length) dispatch(getProducts);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
