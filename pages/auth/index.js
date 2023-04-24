@@ -5,20 +5,26 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { saveSessionToCookies } from "@/utils";
 
-const AuthPage = () => {
+const LoginPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    supabase.auth.onAuthStateChange(async (event) => {
-      if (event === "SIGNED_IN") {
-        const { data } = await supabase.auth.getSession();
-        if (data) {
-          saveSessionToCookies(data.session);
-        }
+    const handleAuthStateChange = async () => {
+      const { data } = await supabase.auth.getSession();
+      if (data.session) {
+        saveSessionToCookies(data.session);
         router.push("/admin/products");
       }
-    });
-  }, []);
+    };
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(handleAuthStateChange);
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [router]);
 
   return (
     <div className="w-1/2 m-auto">
@@ -27,4 +33,4 @@ const AuthPage = () => {
   );
 };
 
-export default AuthPage;
+export default LoginPage;

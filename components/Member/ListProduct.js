@@ -49,13 +49,11 @@ const ListProduct = () => {
                         height={200}
                       />
                     </div>
-                    <div className="mt-4 flex justify-between">
-                      <div>
-                        <h3 className="text-sm text-gray-700">
-                          <span aria-hidden="true" className="cursor-pointer absolute inset-0"></span>
-                          {item.name}
-                        </h3>
-                      </div>
+                    <div className="mt-4 flex justify-between items-end">
+                      <h3 className="text-sm text-gray-700">
+                        <span aria-hidden="true" className="cursor-pointer absolute inset-0"></span>
+                        {item.name}
+                      </h3>
                       <div>
                         <p className="text-sm font-medium text-gray-900 line-through">${item.price}</p>
                         <p className="text-sm font-medium text-gray-900">${item.discount_price}</p>
