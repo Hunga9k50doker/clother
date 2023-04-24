@@ -45,7 +45,7 @@ const ProductDetail = () => {
       name_product: data.name,
       id_product: data.id,
       amount: +amountRef.current.value,
-      total: +(data.price * amountRef.current.value).toFixed(3),
+      total: +(data.discount_price * amountRef.current.value).toFixed(3),
     };
     dispatch(createOrder(dataSubmit));
     setIsOpen(false);
